@@ -12,7 +12,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "D:/PlatformIO/PressostatoTeste/.pio/build/uno/firmware.elf",
+            "executable": "d:/PlatformIO/Teste lavadora/.pio/build/uno/firmware.elf",
+            "projectEnvName": "uno",
             "toolchainBinDir": "C:/Users/14M2/.platformio/packages/toolchain-atmelavr/bin",
             "preLaunchTask": {
                 "type": "PlatformIO",
@@ -24,7 +25,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "D:/PlatformIO/PressostatoTeste/.pio/build/uno/firmware.elf",
+            "executable": "d:/PlatformIO/Teste lavadora/.pio/build/uno/firmware.elf",
+            "projectEnvName": "uno",
             "toolchainBinDir": "C:/Users/14M2/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
