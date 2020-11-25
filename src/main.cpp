@@ -2,7 +2,25 @@
 
 #include <FreqCount.h>
 #include <LiquidCrystal_I2C.h>
+#include <Keypad_I2C.h>
+#include <Keypad.h>
 LiquidCrystal_I2C lcd(0x3f, 16, 2);
+
+const byte LINHAS = 4;
+const byte COLUNAS = 4;
+
+char teclas[LINHAS][COLUNAS] = {
+{'1','2','3','A'},
+{'4','5','6','B'},
+{'7','8','9','C'},
+{'*','0','#','D'}
+};
+byte PinsFilas[LINHAS] = {0,1,2,3}; 
+byte PinsColumnas[COLUNAS] = {4,5,6,7};
+
+int i2caddress = 0x20;
+
+Keypad_I2C kpd = Keypad_I2C( makeKeymap(teclas), PinsFilas, PinsColumnas, LINHAS, COLUNAS, i2caddress );
 
 int val1=7, val2=10, bom=11, mho=12, mah=8,ta=500, it=200;
 byte atiu[8] = { B01110,
@@ -24,6 +42,24 @@ byte dilha[8] = {B00000, //
                  B01110,
                  B00100,
                 };
+
+void testeteclado()
+{
+  char tecla = kpd.getKey();  
+  if (tecla)
+  {
+    lcd.print(tecla);
+  }
+  if(tecla =='A'){
+  lcd.clear();
+  lcd.setCursor(1,0);
+  lcd.print("Menu Principal");
+  
+  }
+   if(tecla =='#'){
+  lcd.clear();
+   }
+}
 
 void frequcimetro(){
   lcd.home();
@@ -118,6 +154,7 @@ void auto_teste(){
 void setup() {
   Serial.begin(57600);
   lcd.begin();
+  kpd.begin();
   lcd.backlight();
   pinMode(val1,OUTPUT);
   pinMode(val2,OUTPUT);
@@ -136,13 +173,14 @@ void setup() {
 }
 
 void loop() {
-for (int i =0; i<1000; i++){
+testeteclado();
+/*for (int i =0; i<1000; i++){
 frequcimetro();
 }
 lcd.setCursor(0, 1);
 lcd.print("                ");
 for (int i =0; i<1; i++)
-auto_teste();
+auto_teste(); */
 
 }
 
